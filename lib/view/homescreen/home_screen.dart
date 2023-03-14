@@ -1,5 +1,7 @@
+import 'package:shortcuts/core/action/alltext_action.dart';
 import 'package:shortcuts/core/action/next_screen_action.dart';
 import 'package:shortcuts/core/action/pastetext_action.dart';
+import 'package:shortcuts/core/intent/alltext_intent.dart';
 import 'package:shortcuts/core/intent/pastetext_intent.dart';
 import '../../core/intent/next_screen_intent.dart';
 import '../widget/text_form_field.dart';
@@ -21,14 +23,16 @@ class _HomeScreenState extends State<HomeScreen> {
     return Shortcuts(
         shortcuts: <LogicalKeySet, Intent>{
           LogicalKeySet(LogicalKeyboardKey.delete): const ClearTextIntent(),
-          LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.digit0): const CopyTextIntent(),
+          LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.keyC): const CopyTextIntent(),
           LogicalKeySet(LogicalKeyboardKey.arrowUp): const IncrementIntent(),
           LogicalKeySet(LogicalKeyboardKey.arrowDown): const DecrementIntent(),
           LogicalKeySet(LogicalKeyboardKey.control,LogicalKeyboardKey.keyZ):const PasteIntent(),
           LogicalKeySet(LogicalKeyboardKey.arrowRight):const NextScreenIntent(),
+          LogicalKeySet(LogicalKeyboardKey.control,LogicalKeyboardKey.keyL):const AllTextIntent(),
         },
         child: Actions(
           actions: <Type, Action<Intent>>{
+            AllTextIntent:AllTextAction(controller),
             ClearTextIntent: ClearTextAction(controller),
             CopyTextIntent: CopyTextAction(controller),
             PasteIntent:PasteTextAction(controller),

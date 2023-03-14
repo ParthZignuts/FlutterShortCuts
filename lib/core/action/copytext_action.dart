@@ -3,8 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:shortcuts/core/intent/copytext_intent.dart';
 
 class CopyTextAction extends Action<CopyTextIntent> {
-  final TextEditingController controller;
+
   CopyTextAction(this.controller);
+  final TextEditingController controller;
   @override
   Object? invoke(covariant CopyTextIntent intent) {
     final String selectedString = controller.text.substring(
@@ -12,7 +13,6 @@ class CopyTextAction extends Action<CopyTextIntent> {
       controller.selection.extentOffset,
     );
     Clipboard.setData(ClipboardData(text: selectedString));
-
     return null;
   }
 }

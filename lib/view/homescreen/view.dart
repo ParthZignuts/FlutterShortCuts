@@ -1,0 +1,9 @@
+export 'package:shortcuts/view/homescreen/home_screen.dart';
+export 'package:shortcuts/view/homescreen/third_slide.dart';
+export '../homescreen/fifth_slide.dart';
+export './fourth_slide.dart';
+export './last_slide_demo.dart';
+export './second_slide.dart';
+export './sixth_slide.dart';
+export './seventh_slide.dart';
+export '../../theme/textstyle.dart';

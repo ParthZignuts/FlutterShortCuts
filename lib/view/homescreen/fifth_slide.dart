@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:shortcuts/core/action/action.dart';
 import '../homescreen/view.dart';
 import '../../core/intent/intent.dart';
 
@@ -20,6 +21,7 @@ class FifthSlide extends StatelessWidget {
           LogicalKeySet(LogicalKeyboardKey.arrowLeft):const BackIntent(),
         },
         child: Actions(
+          dispatcher: LoggingActionDispatcher(),
             actions: <Type, Action<Intent>>{
               NextScreenIntent: CallbackAction(
                 onInvoke: (intent) => Get.offAll(const SixthSlide()),

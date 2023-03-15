@@ -33,6 +33,7 @@ class _ShortcutDemoSlideState extends State<ShortcutDemoSlide> {
               const AllTextIntent(),
         },
         child: Actions(
+          dispatcher: LoggingActionDispatcher(),
           actions: <Type, Action<Intent>>{
             AllTextIntent: AllTextAction(controller),
             ClearTextIntent: ClearTextAction(controller),

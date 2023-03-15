@@ -18,6 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const NextScreenIntent(),
         },
         child: Actions(
+          dispatcher: LoggingActionDispatcher(),
           actions: <Type, Action<Intent>>{
             NextScreenIntent: NextScreenAction(context),
           },

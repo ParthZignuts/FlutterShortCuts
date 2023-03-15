@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import '../../core/action/action_dispatcher.dart';
 import '../homescreen/view.dart';
 import '../../core/intent/intent.dart';
 
@@ -13,6 +14,7 @@ class SeventhSlide extends StatelessWidget {
           const BackIntent(),
         },
         child: Actions(
+          dispatcher: LoggingActionDispatcher(),
           actions: <Type, Action<Intent>>{
             BackIntent:CallbackAction(
                onInvoke: (intent) => Get.offAll(const SixthSlide()),

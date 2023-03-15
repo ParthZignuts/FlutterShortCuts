@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:shortcuts/core/intent/intent.dart';
+import '../../core/action/action_dispatcher.dart';
 import '../homescreen/view.dart';
 
 
@@ -27,6 +28,7 @@ class _SecondSlideState extends State<SecondSlide> {
           LogicalKeySet(LogicalKeyboardKey.arrowLeft):const BackIntent(),
         },
         child: Actions(
+            dispatcher: LoggingActionDispatcher(),
             actions: <Type, Action<Intent>>{
               NextScreenIntent: CallbackAction(
                 onInvoke: (intent) => Get.offAll(const ThirdSlide()),

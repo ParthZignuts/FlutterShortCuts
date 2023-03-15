@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
+import '../../core/action/action_dispatcher.dart';
 import '../homescreen/view.dart';
 import '../../core/intent/intent.dart';
-
 
 class ThirdSlide extends StatelessWidget {
   const ThirdSlide({Key? key}) : super(key: key);
@@ -20,6 +20,7 @@ class ThirdSlide extends StatelessWidget {
           LogicalKeySet(LogicalKeyboardKey.arrowLeft): const BackIntent(),
         },
         child: Actions(
+            dispatcher: LoggingActionDispatcher(),
             actions: <Type, Action<Intent>>{
               NextScreenIntent: CallbackAction(
                 onInvoke: (intent) => Get.offAll(const FourthSlide()),

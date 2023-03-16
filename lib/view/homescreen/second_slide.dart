@@ -17,18 +17,16 @@ class _SecondSlideState extends State<SecondSlide> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Shortcuts(
         shortcuts: <LogicalKeySet, Intent>{
-          LogicalKeySet(LogicalKeyboardKey.arrowRight):
-              const NextScreenIntent(),
+          LogicalKeySet(LogicalKeyboardKey.arrowRight): const NextScreenIntent(),
           LogicalKeySet(LogicalKeyboardKey.arrowLeft): const BackIntent(),
         },
         child: Actions(
             dispatcher: LoggingActionDispatcher(),
             actions: <Type, Action<Intent>>{
-              NextScreenIntent: NextScreenAction(onNextSlide: ()=>Get.offAll(const ThirdSlide())),
-              BackIntent: BackSlideAction(onBackSlide: ()=>Get.offAll(const HomeScreen())),
+              NextScreenIntent: NextScreenAction(onNextSlide: () => Get.offAll(const ThirdSlide())),
+              BackIntent: BackSlideAction(onBackSlide: () => Get.offAll(const HomeScreen())),
             },
             child: Padding(
               padding: const EdgeInsets.all(10.0),
@@ -93,7 +91,8 @@ class _SecondSlideState extends State<SecondSlide> {
                   ),
                   SizedBox(
                     height: 10,
-                  ), Text(
+                  ),
+                  Text(
                     '',
                     style: TextStyles.content,
                   ),

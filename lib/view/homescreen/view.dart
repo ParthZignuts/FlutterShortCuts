@@ -7,3 +7,4 @@ export './second_slide.dart';
 export './sixth_slide.dart';
 export './seventh_slide.dart';
 export '../../theme/textstyle.dart';
+export '../widget/text_form_field.dart';

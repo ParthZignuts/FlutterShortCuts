@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import '../homescreen/view.dart';
 import '../../core/intent/intent.dart';
 import '../../core/action/action.dart';
-import '../widget/text_form_field.dart';
 
 class ShortcutDemoSlide extends StatefulWidget {
   const ShortcutDemoSlide({Key? key}) : super(key: key);
@@ -18,8 +17,9 @@ class _ShortcutDemoSlideState extends State<ShortcutDemoSlide> {
 
   @override
   Widget build(BuildContext context) {
-    return Shortcuts(
-        shortcuts:<LogicalKeySet,Intent>{
+    return Scaffold(
+      body: Shortcuts(
+        shortcuts: <LogicalKeySet, Intent>{
           LogicalKeySet(LogicalKeyboardKey.arrowLeft): const BackIntent(),
           LogicalKeySet(LogicalKeyboardKey.delete): const ClearTextIntent(),
           LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.keyC):
@@ -43,55 +43,62 @@ class _ShortcutDemoSlideState extends State<ShortcutDemoSlide> {
             NextScreenIntent: NextScreenAction(
                 onNextSlide: () => Get.offAll(const SeventhSlide())),
             // Avoid it
-            BackIntent: BackSlideAction(onBackSlide: () => Get.offAll(const SixthSlide())),
+            BackIntent: BackSlideAction(
+                onBackSlide: () => Get.offAll(const SixthSlide())),
             // Prefer to use this
-            IncrementIntent: SetCounterAction(perform: () => setState(() {count++;})),
-           //don't use CallbackAction
-            DecrementIntent: CallbackAction(onInvoke: (intent) => setState(() {if (count > 0) count--;}),
+            IncrementIntent: SetCounterAction(
+                perform: () => setState(() {
+                      count++;
+                    })),
+            //don't use CallbackAction
+            DecrementIntent: CallbackAction(
+              onInvoke: (intent) => setState(() {
+                if (count > 0) count--;
+              }),
             ),
           },
-          child: Scaffold(
-            body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Ctrl + c : To Copy Text"),
-                  const Text("Ctrl + z : To Paste Text"),
-                  const Text("Delete  : To Clear All Text"),
-                  const Text("UpArrow  : To Increment Values"),
-                  const Text("Down Arrow  : To Decrement Values"),
-                  const SizedBox(
-                    height: 15,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Ctrl + c : To Copy Text"),
+                const Text("Ctrl + z : To Paste Text"),
+                const Text("Delete  : To Clear All Text"),
+                const Text("UpArrow  : To Increment Values"),
+                const Text("Down Arrow  : To Decrement Values"),
+                const SizedBox(
+                  height: 15,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: KTextFormField(controller: controller),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                          onPressed: () => incrementCount(),
+                          child: const Icon(Icons.arrow_upward)),
+                      Focus(autofocus: true, child: Text('$count')),
+                      ElevatedButton(
+                          autofocus: false,
+                          onPressed: () => decrementCount(),
+                          child: const Icon(Icons.arrow_downward)),
+                    ],
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    child: KTextFormField(controller: controller),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ElevatedButton(
-                            onPressed: () => incrementCount(),
-                            child: const Icon(Icons.arrow_upward)),
-                        Focus(autofocus: true, child: Text('$count')),
-                        ElevatedButton(
-                            autofocus: false,
-                            onPressed: () => decrementCount(),
-                            child: const Icon(Icons.arrow_downward)),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            bottomNavigationBar: const Text(
-              "7",
-              textAlign: TextAlign.center,
+                ),
+              ],
             ),
           ),
-        ));
+        ),
+      ),
+      bottomNavigationBar: const Text(
+        "7",
+        textAlign: TextAlign.center,
+      ),
+    );
   }
 
   incrementCount() {

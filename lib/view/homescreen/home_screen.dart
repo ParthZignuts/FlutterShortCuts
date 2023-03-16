@@ -13,7 +13,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Shortcuts(
+    return Scaffold(
+      body: Shortcuts(
         shortcuts: <LogicalKeySet, Intent>{
           LogicalKeySet(LogicalKeyboardKey.arrowRight):
               const NextScreenIntent(),
@@ -21,31 +22,32 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Actions(
           dispatcher: LoggingActionDispatcher(),
           actions: <Type, Action<Intent>>{
-            NextScreenIntent: NextScreenAction(onNextSlide: ()=>Get.offAll(const SecondSlide())),
+            NextScreenIntent: NextScreenAction(
+                onNextSlide: () => Get.offAll(const SecondSlide())),
           },
-          child: Scaffold(
-
-            body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text('Flutter Shortcuts', style: TextStyles.header),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Focus(
-                    autofocus: true,
-                    child: Text('Prepared By: Parth Akbari',
-                        style: TextStyles.content),
-                  ),
-                ],
-              ),
-            ),
-            bottomNavigationBar: const Text(
-              "1",style: TextStyles.content,
-              textAlign: TextAlign.center,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text('Flutter Shortcuts', style: TextStyles.header),
+                SizedBox(
+                  height: 15,
+                ),
+                Focus(
+                  autofocus: true,
+                  child: Text('Prepared By: Parth Akbari',
+                      style: TextStyles.content),
+                ),
+              ],
             ),
           ),
-        ));
+        ),
+      ),
+      bottomNavigationBar: const Text(
+        "1",
+        style: TextStyles.content,
+        textAlign: TextAlign.center,
+      ),
+    );
   }
 }

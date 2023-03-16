@@ -3,7 +3,6 @@ import 'package:shortcuts/core/action/action.dart';
 import '../homescreen/view.dart';
 import '../../core/intent/intent.dart';
 
-
 class FifthSlide extends StatelessWidget {
   const FifthSlide({Key? key}) : super(key: key);
 
@@ -17,16 +16,16 @@ class FifthSlide extends StatelessWidget {
       body: Shortcuts(
         shortcuts: <LogicalKeySet, Intent>{
           LogicalKeySet(LogicalKeyboardKey.arrowRight):
-          const NextScreenIntent(),
-          LogicalKeySet(LogicalKeyboardKey.arrowLeft):const BackIntent(),
+              const NextScreenIntent(),
+          LogicalKeySet(LogicalKeyboardKey.arrowLeft): const BackIntent(),
         },
         child: Actions(
-          dispatcher: LoggingActionDispatcher(),
+            dispatcher: LoggingActionDispatcher(),
             actions: <Type, Action<Intent>>{
               NextScreenIntent: CallbackAction(
                 onInvoke: (intent) => Get.offAll(const SixthSlide()),
               ),
-              BackIntent:CallbackAction(
+              BackIntent: CallbackAction(
                 onInvoke: (intent) => Get.offAll(const FourthSlide()),
               )
             },
@@ -34,36 +33,64 @@ class FifthSlide extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Align(alignment: Alignment.center,child: Text('Action', style: TextStyles.header),),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    '=> An Action can be a simple callback like we add action on button Press to perform Some Operation on it',
-                    style: TextStyles.content,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    '=> Like We use Action on Button Press that same way when we declare action class then we have to mention intent , for which intent we can perform which action.',
-                    style: TextStyles.content,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text('=>Shortcuts are key bindings that activate by pressing a key or combination of keys. The key combinations reside in a table with their bound intent. When the Shortcuts widget invokes them, it sends their matching intent to the actions subsystem for fulfillment.',style: TextStyles.content,),
-                  const SizedBox(height: 10,),
+                children: const [
                   Align(
                     alignment: Alignment.center,
-                    child: ElevatedButton(
-                        onPressed: () {}, child: const Text('Next Slide')),
+                    child: Text('Action', style: TextStyles.header),
                   ),
-                  const Flexible(
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Focus(
+                    autofocus: true,
+                    child: Text(
+                      '=> Actions is an StatefulWidget that provided in flutter widget library itself, so we have to directly used it.',
+                      style: TextStyles.content,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    '=>Actions widget is wrapped under Shortcuts widget .',
+                    style: TextStyles.content,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    '=>Actions Widget can take  four Properties but we have to use three property from them for implementation of the Shotcuts.',
+                    style: TextStyles.content,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    '=>1.dispatcher : It take ActionDispatcher which will be used maily for the printing logs like what action will be called . ActionDispatcher will be used because after some time we don’t know which action will be used for which shortcuts.',
+                    style: TextStyles.content,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    '=>2.actions:<Type, Action<Intent>>{ NextScreenIntent: const NextScreenIntent(),}',
+                    style: TextStyles.content,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    '=>3.child: it takes widget we have to show as a Ui to the user.',
+                    style: TextStyles.content,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Flexible(
                     flex: 1,
                     child: Align(
-                        alignment: Alignment.bottomCenter, child: Text("5",style: TextStyles.content)),
+                        alignment: Alignment.bottomCenter,
+                        child: Text("5", style: TextStyles.content)),
                   ),
                 ],
               ),

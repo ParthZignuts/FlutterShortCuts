@@ -36,16 +36,18 @@ class ThirdSlide extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                const Text(
-                  'See the bellow image, it’s the straightforward architecture of this new system.',
-                  style: TextStyles.content,
+                const Focus(
+                  autofocus: true,
+                  child:  Text(
+                    '=>See the bellow image, it’s the straightforward architecture of this new system.',
+                    style: TextStyles.content,
+                  ),
                 ),
                 const SizedBox(
                   height: 10.0,
                 ),
                 Expanded(child: Image.asset('assets/images/img.png')),
-                ElevatedButton(
-                    onPressed: () {}, child: const Text('Next Slide')),
+
                 const Align(
                     alignment: Alignment.center,
                     child: Text(

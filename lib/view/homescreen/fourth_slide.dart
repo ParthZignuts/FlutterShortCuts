@@ -34,33 +34,33 @@ class FourthSlide extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Align(alignment: Alignment.center,child: Text('Intent', style: TextStyles.header),),
-                  const SizedBox(
+                children: const [
+                  Align(alignment: Alignment.center,child: Text('Intent', style: TextStyles.header),),
+                  SizedBox(
                     height: 10,
                   ),
-                  const Text(
-                    '=> An Intent as we know that Intent allow you to send messages from one component to another.',
-                    style: TextStyles.content,
+                  Focus(
+                    autofocus: true,
+                    child: Text(
+                      '=> An Intent as we know that Intent allow you to send messages from one component to another.',
+                      style: TextStyles.content,
+                    ),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 10,
                   ),
-                  const Text(
+                  Text(
                     '=> In Shortcuts We Need combined Intent With Our Keyboard Keyset Like If I Press RightArrow Key then This Particular Intent Will Be Called.',
                     style: TextStyles.content,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 10,
                   ),
-                  const Text('=> After that We Also Have to Combine Intent With Specific Action like Which Action Will Be Performed if We Press Particular Shortcuts ',style: TextStyles.content,),
-                  const SizedBox(height: 10,),
-                  Align(
-                    alignment: Alignment.center,
-                    child: ElevatedButton(
-                        onPressed: () {}, child: const Text('Next Slide')),
-                  ),
-                  const Flexible(
+                  Text('=> After that We Also Have to Combine Intent With Specific Action like Which Action Will Be Performed if We Press Particular Shortcuts. ',style: TextStyles.content,),
+                  SizedBox(height: 10,),
+                 Text('=>Mainy Intent Will be Helped to Trigger Specific Action on Shortcuts.',style:TextStyles.content),
+                  SizedBox(height: 10,),
+                  Flexible(
                     flex: 1,
                     child: Align(
                         alignment: Alignment.bottomCenter, child: Text("4",style: TextStyles.content,)),

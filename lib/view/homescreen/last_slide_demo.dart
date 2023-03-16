@@ -57,7 +57,7 @@ class _ShortcutDemoSlideState extends State<ShortcutDemoSlide> {
           child: Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              title: const Text('ShortCuts'),
+              title: const Text('Demo App'),
             ),
             body: Center(
               child: Column(
@@ -75,7 +75,7 @@ class _ShortcutDemoSlideState extends State<ShortcutDemoSlide> {
                         ElevatedButton(
                             onPressed: () => incrementCount(),
                             child: const Icon(Icons.add)),
-                        Text('$count'),
+                        Focus(autofocus:true,child: Text('$count')),
                         ElevatedButton(
                             autofocus: false,
                             onPressed: () => decrementCount(),
@@ -86,6 +86,10 @@ class _ShortcutDemoSlideState extends State<ShortcutDemoSlide> {
                 ],
               ),
             ),
+            bottomNavigationBar:const Text(
+            "7",
+            textAlign: TextAlign.center,
+          ),
           ),
         ));
   }

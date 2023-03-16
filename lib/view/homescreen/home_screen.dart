@@ -23,30 +23,26 @@ class _HomeScreenState extends State<HomeScreen> {
             NextScreenIntent: NextScreenAction(context),
           },
           child: Scaffold(
-            appBar: AppBar(
-              centerTitle: true,
-              title: const Text('ShortCuts'),
+
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text('Flutter Shortcuts', style: TextStyles.header),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Focus(
+                    autofocus: true,
+                    child: Text('Prepared By: Parth Akbari',
+                        style: TextStyles.content),
+                  ),
+                ],
+              ),
             ),
-            body: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text('Hello Guys', style: TextStyles.header),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text('Today we will talk about ShortCuts In Flutter',
-                    style: TextStyles.content),
-                const SizedBox(
-                  height: 10,
-                ),
-                ElevatedButton(onPressed: () {}, child: const Text("Next")),
-                const Flexible(
-                  flex: 1,
-                  child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Text("1", style: TextStyles.content)),
-                ),
-              ],
+            bottomNavigationBar: const Text(
+              "1",style: TextStyles.content,
+              textAlign: TextAlign.center,
             ),
           ),
         ));

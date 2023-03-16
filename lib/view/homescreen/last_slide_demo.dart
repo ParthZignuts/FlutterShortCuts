@@ -14,12 +14,13 @@ class ShortcutDemoSlide extends StatefulWidget {
 class _ShortcutDemoSlideState extends State<ShortcutDemoSlide> {
   int count = 0;
   TextEditingController controller = TextEditingController();
+  TextEditingController controller2 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Shortcuts(
-        shortcuts: <LogicalKeySet, Intent>{
-          LogicalKeySet(LogicalKeyboardKey.arrowLeft):const BackIntent(),
+        shortcuts:<LogicalKeySet,Intent>{
+          LogicalKeySet(LogicalKeyboardKey.arrowLeft): const BackIntent(),
           LogicalKeySet(LogicalKeyboardKey.delete): const ClearTextIntent(),
           LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.keyC):
               const CopyTextIntent(),
@@ -39,30 +40,29 @@ class _ShortcutDemoSlideState extends State<ShortcutDemoSlide> {
             ClearTextIntent: ClearTextAction(controller),
             CopyTextIntent: CopyTextAction(controller),
             PasteIntent: PasteTextAction(controller),
-            NextScreenIntent:CallbackAction(
-              onInvoke: (intent) => Get.offAll(const SeventhSlide()),
-            ),
-            BackIntent:CallbackAction(
-              onInvoke: (intent) => Get.offAll(const SixthSlide()),
-            ),
-            IncrementIntent: CallbackAction(
-              onInvoke: (intent) => setState(() => count++),
-            ),
-            DecrementIntent: CallbackAction(
-              onInvoke: (intent) => setState(() {
-                if (count > 0) count--;
-              }),
+            NextScreenIntent: NextScreenAction(
+                onNextSlide: () => Get.offAll(const SeventhSlide())),
+            // Avoid it
+            BackIntent: BackSlideAction(onBackSlide: () => Get.offAll(const SixthSlide())),
+            // Prefer to use this
+            IncrementIntent: SetCounterAction(perform: () => setState(() {count++;})),
+           //don't use CallbackAction
+            DecrementIntent: CallbackAction(onInvoke: (intent) => setState(() {if (count > 0) count--;}),
             ),
           },
           child: Scaffold(
-            appBar: AppBar(
-              centerTitle: true,
-              title: const Text('Demo App'),
-            ),
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const Text("Ctrl + c : To Copy Text"),
+                  const Text("Ctrl + z : To Paste Text"),
+                  const Text("Delete  : To Clear All Text"),
+                  const Text("UpArrow  : To Increment Values"),
+                  const Text("Down Arrow  : To Decrement Values"),
+                  const SizedBox(
+                    height: 15,
+                  ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: KTextFormField(controller: controller),
@@ -74,22 +74,22 @@ class _ShortcutDemoSlideState extends State<ShortcutDemoSlide> {
                       children: [
                         ElevatedButton(
                             onPressed: () => incrementCount(),
-                            child: const Icon(Icons.add)),
-                        Focus(autofocus:true,child: Text('$count')),
+                            child: const Icon(Icons.arrow_upward)),
+                        Focus(autofocus: true, child: Text('$count')),
                         ElevatedButton(
                             autofocus: false,
                             onPressed: () => decrementCount(),
-                            child: const Icon(Icons.remove)),
+                            child: const Icon(Icons.arrow_downward)),
                       ],
                     ),
                   ),
                 ],
               ),
             ),
-            bottomNavigationBar:const Text(
-            "7",
-            textAlign: TextAlign.center,
-          ),
+            bottomNavigationBar: const Text(
+              "7",
+              textAlign: TextAlign.center,
+            ),
           ),
         ));
   }

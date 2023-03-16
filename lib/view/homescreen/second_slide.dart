@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:shortcuts/core/intent/intent.dart';
-import '../../core/action/action_dispatcher.dart';
+import '../../core/action/action.dart';
 import '../homescreen/view.dart';
 
 class SecondSlide extends StatefulWidget {
@@ -17,10 +17,7 @@ class _SecondSlideState extends State<SecondSlide> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Shortcuts'),
-        centerTitle: true,
-      ),
+
       body: Shortcuts(
         shortcuts: <LogicalKeySet, Intent>{
           LogicalKeySet(LogicalKeyboardKey.arrowRight):
@@ -30,12 +27,8 @@ class _SecondSlideState extends State<SecondSlide> {
         child: Actions(
             dispatcher: LoggingActionDispatcher(),
             actions: <Type, Action<Intent>>{
-              NextScreenIntent: CallbackAction(
-                onInvoke: (intent) => Get.offAll(const ThirdSlide()),
-              ),
-              BackIntent: CallbackAction(
-                onInvoke: (intent) => Get.offAll(const HomeScreen()),
-              )
+              NextScreenIntent: NextScreenAction(onNextSlide: ()=>Get.offAll(const ThirdSlide())),
+              BackIntent: BackSlideAction(onBackSlide: ()=>Get.offAll(const HomeScreen())),
             },
             child: Padding(
               padding: const EdgeInsets.all(10.0),

@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import '../../core/action/action.dart';
 import '../../core/intent/intent.dart';
 import '../homescreen/view.dart';
@@ -20,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Actions(
           dispatcher: LoggingActionDispatcher(),
           actions: <Type, Action<Intent>>{
-            NextScreenIntent: NextScreenAction(context),
+            NextScreenIntent: NextScreenAction(onNextSlide: ()=>Get.offAll(const SecondSlide())),
           },
           child: Scaffold(
 

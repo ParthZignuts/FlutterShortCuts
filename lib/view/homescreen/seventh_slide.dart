@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../../core/action/action_dispatcher.dart';
+import '../../core/action/action.dart';
 import '../homescreen/view.dart';
 import '../../core/intent/intent.dart';
 
@@ -16,9 +16,7 @@ class SeventhSlide extends StatelessWidget {
         child: Actions(
           dispatcher: LoggingActionDispatcher(),
           actions: <Type, Action<Intent>>{
-            BackIntent:CallbackAction(
-               onInvoke: (intent) => Get.offAll(const ShortcutDemoSlide()),
-            )
+            BackIntent:BackSlideAction(onBackSlide: ()=>Get.offAll(const ShortcutDemoSlide())),
           },
           child: Scaffold(
             body: Center(
@@ -43,7 +41,7 @@ class SeventhSlide extends StatelessWidget {
               ),
             ),
             bottomNavigationBar: const Text(
-              "8",
+              "8",style: TextStyles.content,
               textAlign: TextAlign.center,
             ),
           ),

@@ -9,10 +9,6 @@ class FifthSlide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Actions'),
-        centerTitle: true,
-      ),
       body: Shortcuts(
         shortcuts: <LogicalKeySet, Intent>{
           LogicalKeySet(LogicalKeyboardKey.arrowRight):
@@ -22,12 +18,10 @@ class FifthSlide extends StatelessWidget {
         child: Actions(
             dispatcher: LoggingActionDispatcher(),
             actions: <Type, Action<Intent>>{
-              NextScreenIntent: CallbackAction(
-                onInvoke: (intent) => Get.offAll(const SixthSlide()),
-              ),
-              BackIntent: CallbackAction(
-                onInvoke: (intent) => Get.offAll(const FourthSlide()),
-              )
+              NextScreenIntent: NextScreenAction(
+                  onNextSlide: () => Get.offAll(const SixthSlide())),
+              BackIntent: BackSlideAction(
+                  onBackSlide: () => Get.offAll(const FourthSlide())),
             },
             child: Padding(
               padding: const EdgeInsets.all(10.0),

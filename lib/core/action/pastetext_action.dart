@@ -1,6 +1,5 @@
 
 import '../intent/intent.dart';
-import '../intent/pastetext_intent.dart';
 
 class PasteTextAction extends Action<PasteIntent>{
   TextEditingController controller;
